@@ -1,3 +1,2 @@
-
 test:
-	python3.6 tests.py
+	python3 tests.py
