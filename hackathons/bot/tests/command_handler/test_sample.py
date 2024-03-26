@@ -8,7 +8,7 @@ class SampleCommandHandlerTestCase(TestCase):
         self._handler = SampleCommandHandler()
 
     def test_handle(self):
-        self.assertEqual('_test', self._handler.handle('_test'))
-        self.assertIsNone(self._handler.handle('test'))
+        self.assertEqual("_test", self._handler.handle("_test"))
+        self.assertIsNone(self._handler.handle("test"))
         with self.assertRaises(RuntimeError):
-            self._handler.handle('@test')
+            self._handler.handle("@test")

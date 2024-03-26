@@ -6,7 +6,7 @@ import aiohttp
 
 async def get_score_and_print(i):
     async with aiohttp.ClientSession() as session:
-        async with session.get('http://localhost:8081/{}'.format(i)) as resp:
+        async with session.get("http://localhost:8081/{}".format(i)) as resp:
             print(await resp.text())
 
 

@@ -7,10 +7,13 @@ from tests import BaseTestCase
 class ActionTestCase(BaseTestCase):
     def setUp(self):
         super().setUp()
-        self._action = Action('test', [
-            (2, self._resource1),
-            (3, self._resource2),
-        ])
+        self._action = Action(
+            "test",
+            [
+                (2, self._resource1),
+                (3, self._resource2),
+            ],
+        )
 
     def test__can_consume(self):
         action = self._action
@@ -29,4 +32,3 @@ class ActionTestCase(BaseTestCase):
         with self.assertRaises(RuntimeError):
             action.consume(dt)
         action.consume(dt + timedelta(seconds=1))
-

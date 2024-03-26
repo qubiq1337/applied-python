@@ -1,7 +1,13 @@
 from crypt import crypt, mksalt, METHOD_SHA512
 from uuid import uuid4
 
-from notes.access import check_password, check_token, get_account_key, get_token_key, get_ro_token_key
+from notes.access import (
+    check_password,
+    check_token,
+    get_account_key,
+    get_token_key,
+    get_ro_token_key,
+)
 
 
 class Account:

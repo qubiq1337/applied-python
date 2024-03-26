@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class TimeInterval:
     DEFAULT_BEGIN = datetime(1970, 1, 1)
 
@@ -24,7 +25,7 @@ class TimeInterval:
         return self._end - self._begin
 
     def __repr__(self):
-        return 'TimeInterval({}, {})'.format(repr(self._begin), repr(self._end))
+        return "TimeInterval({}, {})".format(repr(self._begin), repr(self._end))
 
     def __str__(self):
-        return '{} -> {}'.format(self._begin, self._end)
+        return "{} -> {}".format(self._begin, self._end)

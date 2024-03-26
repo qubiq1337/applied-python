@@ -10,11 +10,11 @@ class MyDict(MutableMapping):
             raise ValueError(path)
 
     def __setitem__(self, key, value):
-        with open(os.path.join(self._path, str(key)), 'w') as f:
+        with open(os.path.join(self._path, str(key)), "w") as f:
             f.write(str(value))
 
     def __getitem__(self, item):
-        with open(os.path.join(self._path, str(item)), 'r') as f:
+        with open(os.path.join(self._path, str(item)), "r") as f:
             return f.read()
 
     def __delitem__(self, key):

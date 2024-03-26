@@ -11,18 +11,20 @@ class MessageCommandHandler(CommandHandler):
     def handle(self, text, rand_func=None):
         if rand_func is None:
             rand_func = randint
-        if not self.messages and (text.startswith('messages get') or text.startswith('messages random')):
-            return 'Сообщений нет'
-        if text.startswith('messages start '):
+        if not self.messages and (
+            text.startswith("messages get") or text.startswith("messages random")
+        ):
+            return "Сообщений нет"
+        if text.startswith("messages start "):
             self.messages.append(text[15:])
-        elif text.startswith('messages get'):
+        elif text.startswith("messages get"):
             result = self.messages[-1]
-            del (self.messages[-1])
+            del self.messages[-1]
             return result
-        elif text.startswith('messages random'):
+        elif text.startswith("messages random"):
             index = rand_func(0, len(self.messages) - 1)
             result = self.messages[index]
             return result
 
-        if text.startswith('@'):
+        if text.startswith("@"):
             raise RuntimeError(text)

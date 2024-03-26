@@ -2,15 +2,15 @@ from crypt import crypt
 
 
 def get_account_key(username):
-    return f'account:{username}'
+    return f"account:{username}"
 
 
 def get_token_key(token):
-    return f'token:{token}'
+    return f"token:{token}"
 
 
 def get_ro_token_key(token):
-    return f'ro_token:{token}'
+    return f"ro_token:{token}"
 
 
 def check_password(username, password, storage):

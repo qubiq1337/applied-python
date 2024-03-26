@@ -1,2 +1,2 @@
 def square_area(side):
-    return side ** 2
+    return side**2

@@ -4,15 +4,15 @@ routes = web.RouteTableDef()
 
 
 def process_batch(batch):
-    return [x ** 3 for x in batch]
+    return [x**3 for x in batch]
 
 
-@routes.get('/')
+@routes.get("/")
 async def hello(request):
     return web.Response(text="Hello, world")
 
 
-@routes.post('/')
+@routes.post("/")
 async def get_score(request):
     data = await request.json()
     print(data)
@@ -26,5 +26,5 @@ def main():
     web.run_app(app)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

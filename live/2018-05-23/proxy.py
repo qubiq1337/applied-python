@@ -33,7 +33,9 @@ class Queue:
                 async with aiohttp.ClientSession() as session:
                     product_ids = [product_id for product_id, future in current_queue]
                     print(product_ids)
-                    async with session.post('http://localhost:8080/', data=json.dumps(product_ids)) as resp:
+                    async with session.post(
+                        "http://localhost:8080/", data=json.dumps(product_ids)
+                    ) as resp:
                         response_data = await resp.json()  # [1, 8, 27]
                         for i, score in enumerate(response_data):
                             product_id, future = current_queue[i]
@@ -43,7 +45,7 @@ class Queue:
 
 
 def process_batch(batch):
-    return [x ** 3 for x in batch]
+    return [x**3 for x in batch]
 
 
 async def get_score(product_id):
@@ -53,9 +55,9 @@ async def get_score(product_id):
     return await future
 
 
-@routes.get('/{product_id}')
+@routes.get("/{product_id}")
 async def get_data(request):
-    product_id = int(request.match_info['product_id'])
+    product_id = int(request.match_info["product_id"])
 
     return web.json_response(await get_score(product_id))
 
@@ -67,5 +69,5 @@ def main():
     web.run_app(app, port=8081)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

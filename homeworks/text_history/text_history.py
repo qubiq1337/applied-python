@@ -6,7 +6,7 @@ from typing import List
 class Action(ABC):
     def __init__(self, pos: int, from_version: int, to_version: int) -> None:
         self._pos = pos
-        self._from_version:int = from_version
+        self._from_version: int = from_version
         self._to_version = to_version
 
     @property
@@ -14,7 +14,7 @@ class Action(ABC):
         return self._pos
 
     @pos.setter
-    def pos(self, pos: (int | None)) -> None:
+    def pos(self, pos: int | None) -> None:
         self._pos = pos
 
     @property
@@ -39,9 +39,7 @@ class Action(ABC):
 
 
 class InsertAction(Action):
-    def __init__(
-            self, pos: int, text: str, from_version: int, to_version: int
-    ) -> None:
+    def __init__(self, pos: int, text: str, from_version: int, to_version: int) -> None:
         super(InsertAction, self).__init__(pos, from_version, to_version)
         self.new_text = text
 
@@ -66,9 +64,7 @@ class InsertAction(Action):
 
 
 class ReplaceAction(Action):
-    def __init__(
-            self, pos: int, text: str, from_version: int, to_version: int
-    ) -> None:
+    def __init__(self, pos: int, text: str, from_version: int, to_version: int) -> None:
         super(ReplaceAction, self).__init__(pos, from_version, to_version)
         self.new_text = text
 
@@ -94,11 +90,11 @@ class ReplaceAction(Action):
 
 class DeleteAction(Action):
     def __init__(
-            self,
-            pos: int,
-            length: int,
-            from_version: int,
-            to_version: int,
+        self,
+        pos: int,
+        length: int,
+        from_version: int,
+        to_version: int,
     ) -> None:
         super(DeleteAction, self).__init__(pos, from_version, to_version)
         self.length = length
@@ -115,9 +111,9 @@ class DeleteAction(Action):
         if self.from_version >= self.to_version or self.from_version < 0:
             raise ValueError("Wrong version values")
         if (
-                self.pos > len(old_text)
-                or self.pos < 0
-                or self.length > len(old_text[self.pos:])
+            self.pos > len(old_text)
+            or self.pos < 0
+            or self.length > len(old_text[self.pos :])
         ):
             raise ValueError
         else:
@@ -205,7 +201,7 @@ class TextHistory:
                 for i in self.actions
                 if ((i.to_version >= from_version) and (i.to_version <= to_version))
             ]
-        elif to_version==0:
+        elif to_version == 0:
             return list()
 
         elif from_version == to_version:

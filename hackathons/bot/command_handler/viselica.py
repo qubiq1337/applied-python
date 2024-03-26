@@ -2,15 +2,16 @@ from command_pool import CommandPool
 from command_handler import CommandHandler
 import requests
 
+
 @CommandPool.register_command_class
 class ViselicaCommandHandler(CommandHandler):
     def __init__(self):
         self.clear()
 
     def clear(self):
-        self.word = ''
-        self.commands = ['check', 'start']
-        self.commands_dict = {'check': self.check, 'start': self.start}
+        self.word = ""
+        self.commands = ["check", "start"]
+        self.commands_dict = {"check": self.check, "start": self.start}
         self.is_started = False
         self.result = []
         self.know = False
@@ -20,7 +21,7 @@ class ViselicaCommandHandler(CommandHandler):
         print("adfsdf")
         parsed_text = text.strip().split()
         print(parsed_text)
-        if parsed_text[0] == 'viselica':
+        if parsed_text[0] == "viselica":
 
             if parsed_text[1] in self.commands:
                 print(self.commands_dict[parsed_text[1]](parsed_text))
@@ -36,34 +37,34 @@ class ViselicaCommandHandler(CommandHandler):
                     self.know = True
                     self.result[i] = char
 
-            if ''.join([*self.result]) == self.word and self.word != '':
+            if "".join([*self.result]) == self.word and self.word != "":
                 self.clear()
-                return 'Congratulation!!! You win'
+                return "Congratulation!!! You win"
 
             if self.know:
-                return 'Success, ' + ' '.join([*self.result])
+                return "Success, " + " ".join([*self.result])
             else:
                 if self.number_trying == 0:
                     self.clear()
-                    return 'Defeat!'
+                    return "Defeat!"
                 self.number_trying -= 1
-                return 'Wrong!\nNumber of trying: {}'.format(self.number_trying)
+                return "Wrong!\nNumber of trying: {}".format(self.number_trying)
         else:
-            return 'Wrong! Only single char!'
+            return "Wrong! Only single char!"
 
     def start(self, parsed_text):
         if self.is_started:
-            return 'The game is already started'
+            return "The game is already started"
         self.is_started = True
         self.word = self.get_word()
-        self.result = ['_'] * len(self.word)
-        return 'The game is started, length: {}'.format(len(self.word))
+        self.result = ["_"] * len(self.word)
+        return "The game is started, length: {}".format(len(self.word))
 
     def get_word(self):
-        response = requests.get('https://castlots.org/generator-slov/generate.php', headers={
-            'X-Requested-With': 'XMLHttpRequest',
-        })
-        return response.json()['va']
-
-
-
+        response = requests.get(
+            "https://castlots.org/generator-slov/generate.php",
+            headers={
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        )
+        return response.json()["va"]

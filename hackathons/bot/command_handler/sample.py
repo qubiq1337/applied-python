@@ -5,8 +5,8 @@ from command_handler import CommandHandler
 @CommandPool.register_command_class
 class SampleCommandHandler(CommandHandler):
     def handle(self, text):
-        if text.startswith('_'):
+        if text.startswith("_"):
             return text
 
-        if text.startswith('@'):
+        if text.startswith("@"):
             raise RuntimeError(text)

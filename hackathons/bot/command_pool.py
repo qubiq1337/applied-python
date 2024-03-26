@@ -1,5 +1,6 @@
 import sys
 
+
 class CommandPool:
     COMMAND_CLASSES = []
 
@@ -10,7 +11,7 @@ class CommandPool:
 
     def __init__(self):
         self._command_handlers = [klass() for klass in self.COMMAND_CLASSES]
-    
+
     def handle(self, command_text):
         for handler in self._command_handlers:
             try:
@@ -19,4 +20,3 @@ class CommandPool:
                     return result
             except Exception as e:
                 print(sys.exc_info())
- 
